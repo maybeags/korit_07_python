@@ -273,14 +273,111 @@ ScoreOutOfRangeError 클래스를 정의해서 사용하겠습니다.
 4. 입력 값이 숫자가 아닌 경우 적절한 예외를 처리하여 '숫자만 입력할 수 있습니다'라는 메시지를 출력한다.
 5. 예외가 발생하지 않는 경우 '정상적으로 처리되었습니다.'라는 메시지를 출력하고, 결과도 출력한다.
 6. 프로그램 종료 메시지를 출력한다.
-
-
-
-
-
-
-
-
-
+'''
+# try :
+#     num = float(input('숫자를 입력하세요 >>> '))
+#     result = 100 / num
+#     print(f'100 / {num} = {result}')
+# except ZeroDivisionError as e:
+#     print(e)
+#     print('0으로 나눌 수 없습니다.')
+# except ValueError as e:
+#     print(e)
+#     print('숫자만 입력만 입력할 수 있습니다.')
+# except Exception as e:
+#     print(e)
+# else:
+#     print('정상적으로 처리되었습니다.')
+# finally:
+#     print('프로그램이 종료되었습니다.')
 
 '''
+사용자로부터 리스트의 인덱스를 입력 받아 해당 인덱스의 값을 출력하는 프로그램을 작성하시오.
+만약 잘못된 인덱스를 입력하면 적절한 예외 메시지를 출력하시오.
+
+지시 사항
+1. 미리 정의된 리스트가 있다.
+2. 사용자로부터 리스트의 인덱스를 입력 받는다.
+3. 입력받은 인덱스를 사용하여 리스트의 값을 출력한다.
+4. 인덱스가 리스트의 범위를 벗어나면 적절한 메시지를 출력한다.
+5. 사람을 의심하고 예상되는 예외를 적용한다.
+6. 예외가 발생하지 않는 경우 "정상적으로 처리되었습니다"라는 메시지와 함께 해당 인덱스의 값을 출력한다.
+7. 프로그램 종료 메시지를 출력한다.
+8. 마이너스인덱스는 적용시키지 않는다. -> 사용자 정의 예외 클래스를 통해서 적용합니다.
+    -> NegativeNumIndexError라고 이름 짓고 처리하겠습니다.
+'''
+# class NegativeNumIndexError(Exception):
+#     pass
+#
+# my_list = [10, 20, 30, 40, 50]
+# try :
+#     num = input('인덱스 넘버를 입력하시오. >>> ')
+#     index = int(num)    # 인덱스 넘버가 int로 바뀌었을 때 걔가 음수값이라면 예외를 발생시켜야하므로
+#     if index < 0:
+#         raise NegativeNumIndexError('마이너스 인덱스는 입력할 수 없습니다.')
+#     print(my_list[index])
+# except NegativeNumIndexError as e:
+#     print(e)
+# except IndexError as e:
+#     print('인덱스 넘버 범위를 벗어났습니다.')
+#     print(e)
+# except ValueError as e:
+#     print('0 ~ index 넘버 범위까지만 입력할 수 있습니다.')
+#     print(e)
+# except Exception as e:
+#     print('예상할 수 없는 예외가 발생했습니다.')
+#     print(e)
+# else:
+#     print('프로그램이 정상 처리되었습니다.')
+# finally:
+#     print('프로그램 종료')
+'''
+사용자로부터 속성명을 입력 받아 객체의 해당 속성을 출력하는 프로그램을 작성하시오.
+만약 사용자가 잘못된 속성을 입력하면 적절한 예외 처리 메시지를 출력하시오.
+
+지시 사항
+1. 미리 정의된 클래스와 객체가 있다.
+2. 사용자로부터 속성명을 입력받는다.
+3. 입력받은 '속성명'을 사용하여 객체의 '속성값'을 출력한다.
+4. 잘못된 속성명을 입력하면 '존재하지 않는 속성입니다.'라는 메시지를 출력한다.
+5. 예외가 발생하지 않은 경우 '정상적으로 처리되었습니다'라는 메시지와 속성값을 출력한다.
+6. 프로그램 종료 메시지를 출력한다.
+'''
+class Person:
+    # 클래스 변수 선언
+    school = '코리아아이티대학교'
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# 객체 생성
+person1 = Person(name='김일', age=21)
+# print(vars(person1)) # vars(객체명) : 객체의 속성명 - 값을 dictionary로 만들어줍니다. JSON이 생각나죠.
+# print(getattr(person1, 'age'))      # 결과값 : 21
+# # getattr()의 두 번째 argument는 인스턴스 변수명을 받습니다. -> 그 데이터를 str으로 받습니다.
+# print(getattr(person1, 'name'))     # 결과값 : 김일
+
+# attr_name = input('출력할 속성명을 입력하세요 >>> ')
+# print(person1.school)
+# getattr(person1, school)  # 클래스 변수인 school이 전역이 아니므로 main 단계에서 선언되지 않은 것으로 간주됩니다. -> 그래서 NameError가 발생했지 속성명과는 관계가 업습니다.
+
+# try :
+#     attr_name = input('출력할 속성명을 입력하세요 >>> ')
+#     attr_value = getattr(person1, attr_name)
+# except AttributeError as e:
+#     print('존재하지 않는 속성명입니다.')
+# except Exception as e:
+#     print('예측할 수 없는 예외가 발생했습니다.')
+#     print(e)
+
+person1_dict = vars(person1)
+'''
+getattr(객체명, 속성명_str)   - 특정 객체의 두번째 argument와 일치하는 속성명의 값을 return
+vars(객체명) - 특정 객체의 속성명-속성값 쌍을 dictionary 형태의 key-value 쌍으로 변환하여 return
+'''
+print(person1_dict)
+attr_key = input('출력할 속성명을 입력하세요 >>> ')
+print(person1_dict[attr_key])
+
+# ch12_inheritance -> main
