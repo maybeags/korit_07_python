@@ -1,4 +1,5 @@
 from turtle import Turtle, Screen
+from random import Random
 # turtle 모듈에서 Turtle, Screen 클래스를 import해왔습니다.
 
 t = Turtle()        # 터틀 객체를 생성했고, 객체명 t
@@ -8,6 +9,36 @@ screen = Screen()   # 스크린 객체 생성
 t.shape('turtle')           # Turtle의 메서드를 호출했는데 argument가 str
 t.color('white')
 screen.bgcolor('black')
+
+# 랜덤 객체 생성
+random = Random()           # hangman할 때 썼었습니다.
+colors = [
+    'dark red',
+    "peru",
+    "dark khaki",
+    "sea green",
+    "crimson",
+    "cornsilk",
+    "pale violet red",
+    "dark slate blue",
+    "royal blue",
+    "papaya whip",
+    "khaki",
+    "dark sea green",
+    "CornflowerBlue",
+    "DarkOrchid",
+    "IndianRed",
+    "DeepSkyBlue",
+    "LightSeaGreen",
+    "wheat",
+    "SlateGray",
+    "SeaGreen",
+    "tomato",
+    "dark olive green",
+    "mint cream",
+    "sienna",
+    'light yellow'
+]
 
 # t.forward(100.3)
 # t.penup()
@@ -64,20 +95,17 @@ screen.bgcolor('black')
 십각형일 때 36
 '''
 # n = int(input('몇각형을 만드시겠습니까? >>> '))
+# 얘는 도형 하나를 그리기 위한 반복문
 # for _ in range(n):
 #     t.forward(100)
 #     t.left(360/n)
 
+# 여러 개의 도형을 그리고 싶다면 도형을 그리는 반복문을 반복 -> 중첩 for
 
-
-
-
-
-
-for i in range(3, 11, ):
+for i in range(3, 11):
     for _ in range(i):
         t.forward(100)
-        t.left(360 / i)
+        t.left(360/i)
 
 
 
