@@ -157,14 +157,54 @@ print(f'직사각형의 넓이: {rectangle.area()}')
 반지름이 5인 원1이 생성되었습니다.
 이름이 원1인 원의 넓이는 ____ 입니다.
 원의 넓이 : ____
-너비가 10, 높이가 9인 직사각형1이 생성되었습니다.
+너비가 10, 높이가 8인 직사각형1이 생성되었습니다.
 이름이 직사각형1인 직사각형의 넓이는 ____ 입니다.
 직사각형의 넓이 : ____
 '''
+class Shape:
+    def __init__(self, name):
+        self.name = name
+
+    def draw(self):
+        print(self.name)
+
+class Circle(Shape):
+
+    def __init__(self, name, radius):
+        super().__init__(name)
+        self.radius = radius
+        print(f'반지름이 {self.radius}인 원이 생성되었습니다.')
+
+    def draw(self):
+        # super().draw()        # override를 받기는 했지만 부모 부분은 사용하지 않았습니다.
+        print(f'이름이 {self.name}인 원의 넓이는 {self.area()}입니다.')
+
+    def area(self):
+        return (self.radius**2)*3.14
 
 
+class Rectangle(Shape):
+
+    def __init__(self, name, width, height):
+        super().__init__(name)
+        self.width = width
+        self.height = height
+        print(f'너비가 {self.width}, 높이가 {self.height}인 직사각형이 생성되었습니다.')
+
+    def draw(self):
+        print(f'이름이 {self.name}인 직사각형의 넓이는 {self.area()}입니다.')
+
+    def area(self):
+        return self.width*self.height
 
 
+circle = Circle('원1', 5)
+circle.draw()
+print(f'원의 넓이 : {circle.area()}')
+
+rectangle = Rectangle('직사각형1', 10, 8)
+rectangle.draw()
+print(f'직사각형의 넓이: {rectangle.area()}')
 
 
 
